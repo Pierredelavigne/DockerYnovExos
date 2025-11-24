@@ -109,6 +109,57 @@ Welcome «votre prenom ».
 
 - Le changement doit appaître dans votre navigateur.
 
+```bash 
+# 1. Récupérer l’image Nginx
+docker pull nginx
+
+# 2. Créer et lancer le conteneur sur un port (ex : 8082)
+docker run -d --name nginx-web -p 8082:80 nginx
+
+# 3. Vérifier image et conteneur
+docker images
+docker ps
+
+# 4. Tester dans le navigateur
+# Accéder à http://localhost:8082
+
+# 5. Entrer dans le conteneur
+docker exec -it nginx-web /bin/sh
+
+# 6. Modifier la page d'accueil
+echo '<h1>Welcome "Pierre"</h1>' > /usr/share/nginx/html/index.html
+
+# 7. Relancer le serveur
+docker restart nginx-web
+
+# 8. Vérifier la modification dans le navigateur
+# Accéder à http://localhost:8082
+```
+
+```bash
+# 1. Récupérer l’image Apache
+docker pull httpd
+
+# 2. Créer et lancer le conteneur sur un port (ex : 8083)
+docker run -d --name apache-web -p 8083:80 httpd
+
+# 3. Vérifier image et conteneur
+docker images
+docker ps
+
+# 4. Entrer dans le conteneur
+docker exec -it apache-web /bin/bash
+
+# 5. Modifier la page d'accueil
+echo "Je suis heureux et je m'appelle Pierre" > /usr/local/apache2/htdocs/index.html
+
+# 6. Relancer le serveur
+docker restart apache-web
+
+# 7. Vérifier la modification dans le navigateur
+# Accéder à http://localhost:8083
+```
+
 ## Partie 3
 
 
