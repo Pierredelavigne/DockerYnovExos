@@ -180,3 +180,26 @@ docker restart apache-web
 - html5up-paradigm-shift.zip pour nginx-web5
 
 - Stopper, ensuite, ces différents conteneurs.
+```bash
+unzip html5up-editorial-m2i.zip -d ./editorial
+unzip html5up-massively.zip -d ./massively
+unzip html5up-paradigm-shift.zip -d ./paradigm-shift
+
+chmod -R 755 ./editorial/html5up-editorial
+chmod -R 755 ./massively
+chmod -R 755 ./paradigm-shift
+
+docker run -d --name nginx-web3 -p 8084:80 -v $(pwd)/editorial/html5up-editorial:/usr/share/nginx/html nginx
+docker run -d --name nginx-web4 -p 8085:80 -v $(pwd)/massively:/usr/share/nginx/html nginx
+docker run -d --name nginx-web5 -p 8086:80 -v $(pwd)/paradigm-shift:/usr/share/nginx/html nginx
+
+
+http://localhost:8084 pour nginx-web3 (editorial)
+
+http://localhost:8085 pour nginx-web4 (massively)
+
+http://localhost:8086 pour nginx-web5 (paradigm-shift)
+
+docker stop nginx-web3 nginx-web4 nginx-web5
+
+```
